@@ -5,15 +5,12 @@ pr: none
 variables:
 - name: devEnvironment
   value: dev
-# TODO: provide an email address for the ExampleWorkflow to an send mail to
-- name: toEmailAddress
-  value: ''
 
 resources:
   pipelines:
   - pipeline: cipipeline
     # TODO: Update with the name of your CI pipeline
-    source: ''
+    source: 'Classic - CI'
     trigger:
       branches:
       - main
@@ -39,8 +36,7 @@ stages:
             displayName: 'Deploy logic app workflows'
             inputs:
               azureSubscription: '$(devServiceConnection)'
-              appType: 'functionApp'
+              appType: 'workflowApp'
               appName: '$(logicAppName)'
               package: '$(Pipeline.Workspace)/cipipeline/$(logicAppCIArtifactName)/$(resources.pipeline.cipipeline.runID).zip'
-              appSettings: '-emailAddress $(toEmailAddress)'
               deploymentMethod: 'zipDeploy'
