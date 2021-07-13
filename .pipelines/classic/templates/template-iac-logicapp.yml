@@ -55,9 +55,7 @@ jobs:
             csmFile: '$(Pipeline.Workspace)/$(artifactName)/connectors-template.json'
             overrideParameters: '
               -location $(resourceGroupLocation)
-              -officeConnectionName $(officeConnectionName)
-              -environmentName ${{ parameters.environment }}
-              -projectName $(projectName)
+              -connections_azureblob_name $(blobConnectionName)
               -logicAppSystemAssignedIdentityTenantId $(logicAppSystemAssignedIdentityTenantId)
               -logicAppSystemAssignedIdentityObjectId $(logicAppSystemAssignedIdentityObjectId)'
             deploymentMode: $(deploymentMode)
@@ -68,3 +66,5 @@ jobs:
             targetType: 'inline'
             script: |
               echo 'Please manually authorize the Office 365 API Connection that was just created.'
+            #   az functionapp config appsettings set --name ${{ steps.ladeploy.outputs.LAname }} --resource-group  ${{ secrets.RG_LA }} --settings "BLOB_CONNECTION_RUNTIMEURL=${{ steps.msdemoconn.outputs.blobendpointurl }}"
+            #   az functionapp config appsettings set --name ${{ steps.ladeploy.outputs.LAname }} --resource-group  ${{ secrets.RG_LA }} --settings "WORKFLOWS_RESOURCE_GROUP_NAME=${{ secrets.RG_CON }}"
