@@ -3,10 +3,10 @@
 variables:
 
   projectName: 'logicappsample'
-  suffix: 'devw'
+  suffix: 'dev'
 
   # TODO: Fill in with the name of your Azure service connection
-  devServiceConnection: ''
+  devServiceConnection: 'devconnection'
 
   # Resource Group
   resourceGroupLocation: 'westus'
@@ -20,7 +20,7 @@ variables:
   logicAppName: 'la-wus-$(projectName)-$(suffix)'
 
   # API Connections
-  officeConnectionName: 'la-wus-$(projectName)-connection-office365'
+  blobConnectionName: 'la-wus-$(projectName)-connection-blob'
 
   # Project artifacts
   logicAppCIArtifactName: 'logicapp_publish_artifact'
